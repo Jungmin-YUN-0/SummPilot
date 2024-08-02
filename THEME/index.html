@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SummPilot</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link href="https://unpkg.com/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap-vue@2.16.0/dist/bootstrap-vue.css" rel="stylesheet">
+
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <style>
+        .close {
+            color: red;
+        }
+
+        .short-hr {
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Translucent white background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+    
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #3498db; /* Loading spinner color */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite; /* Animation properties */
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #3498db;
+        }
+
+        .no-border {
+            border: none;
+        }
+
+        .no-border-header {
+            border-bottom: none;
+        }
+
+        .no-border-body {
+            border: none;
+        }
+
+    </style>
+
+</head>
+
+<body id="page-top">
+
+    <div id="wrapper">
+        <div id="loadingScreen" style="display: none;">
+            <div class="spinner"></div>
+            <div class="loading-text">Processing, please wait...</div>
+            <div class="loading-text">Longer documents may require more time.</div>
+        </div>
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <h5 class="h5 mb-0 text-blue-600"> SummPilot: Bridging Efficiency and Customization for Interactive Summarization System </h5>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    
+                    <!-- Add Card and Tab Content -->
+                    <div class="col-lg-12">
+                        <!-- 1. Basic Mode -->
+                        <h1 class="h5 mb-0" style="color:#6C757D">Basic Mode</h1>
+                        <br>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3" style="background-color: #6C757D; color: rgb(219, 221, 223);">
+                                    <h6 class="m-0 font-weight-bold" style="font-size:11pt">① Automatic Summarization</h6>
+                                </div>
+                            
+                                <div class="card-body">
+                                    <div class="row">
+                                        <!-- Left Column -->
+                                        <div class="col-md-7 mb-5">
+                                            <br>
+                                            <!-- Nav Tabs -->
+                                            <ul class="nav nav-tabs" id="summaryTabs" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab"
+                                                        aria-controls="tab1" aria-selected="true">Document 1</a>
+                                                </li>
+                                                <!-- Add more tabs dynamically using JavaScript -->
+                                                <li class="nav-item add-tab">
+                                                    <a class="nav-link" onclick="addNewTab()"><strong>+</strong></a>
+                                                </li>
+                                            </ul>
+                                            <!-- Tab Content -->
+                                            <div class="tab-content mt-2">
+                                                <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                                                    <!-- Content for Tab 1 -->
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" style="height:245px" name="summaries[]" id="summaryInput1" rows="3" placeholder="Enter your text input here..."></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form id="text-input-form" method="POST">
+                                                <button class="btn btn-outline-secondary btn-sm" type="button" style="float:right;" onclick="submitTextInputs()">Submit</button>
+                                                <button class="btn btn-outline-secondary btn-sm" type="button" style="float:right;" onclick="showExample()">Example</button>
+                                            </form>
+                                        </div>
+
+                                        <!-- Right Column -->
+                                        <div class="col-md-5 mb-3">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <!-- First Card (Top Left) -->
+                                                    <div class="col-xl-12">
+                                                        <div class="card" id="summaryOutput" style="height:320px;">
+                                                            <div class="card-header" style="background-color: #ffffff62; color: #6C757D;">
+                                                                <h6 class="m-0 font-weight-bold">Automated Summary :</h6>
+                                                            </div>
+                                                            <div class="card-body" style="overflow-y: auto;">
+                                                                <p> </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="short-hr">
+                            
+                                <div class="card-footer">
+                                    <button class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm" id='detailButton' onclick="toggleDetail()" style="float:right;">Show Detail</button>
+                                </div>
+                            </div>
+                            <br>
+                            <hr>
+                            <br>
+                            <!-- 2. Advanced Mode -->
+                            <h1 class="h5 mb-0" style="color: #0E7383">Advanced Mode</h1>
+                            <br> 
+                            <section id="User Interaction">
+                            <div class="card shadow mb-4" id="detailCard" style="display: none;">
+                                <div class="card-header py-3" style="background-color: #0E7383; color: #cfdfe2;">
+                                    <h6 class="m-0 font-weight-bold" style="font-size:11pt">② Interactive Summarization</h6>
+                                </div>
+                                <div class="card shadow mb-1">
+                                    <div class="card-body">
+                                        <!-- First Card (Top Left) -->
+                                        <div class="card">
+                                            <div class="card-header" style="background-color: rgb(230, 239, 243); color: #61a0af;">
+                                                <h6 class="m-0 font-weight-bold">Graph Visualization :</h6>
+                                            </div>
+                                            <div class="card-body" style="height:700px">
+                                                <!-- Content for Card 1 -->
+                                                <div id="graph" style="height:680px"></div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <!-- Second Card (Top Right) -->
+                                            <div class="col-md-7 mb-5">
+                                                <div class="card">
+                                                    <!--<div class="card-header" style="background-color: #e7ecf1; color: #7395b8;">-->
+                                                        <div class="card-header" style="background-color: rgb(230, 239, 243); color: #61a0af;">
+                                                        
+                                                        <h6 class="m-0 font-weight-bold">Relation Extraction :</h6>
+                                                    </div>
+                                                    <div class="card-body" style="height:300px; overflow-y: auto; font-size: 13px">
+                                                        <p style="color: gray; font-size: 14px; margin-bottom: 10px; text-align: right;">*The table below is sorted alphabetically by subject.</p>
+                                                        <table id="relationTable" class="table">
+                                                            <!-- Table Content -->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 mb-3">
+                                                <div class="card" id="mentionCluster">
+                                                    <div class="card-header" style="background-color: rgb(230, 239, 243); color: #61a0af;">
+                                                        <h6 class="m-0 font-weight-bold">Entity Clustering :</h6>
+                                                    </div>
+                                                    <div class="card-body" style="height:150px; overflow-y: auto; font-size: 14px">
+                                                        <table id="entityTable" class="table">
+                                                            <!-- Table Content -->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <h6 style="color: #63a5b6;"><strong>User Commands :</strong></h6>
+                                                <textarea class="form-control" id="userPrompt" style="height: 100px" placeholder="Enter your text commands here..."></textarea>
+                                                <div>
+                                                    <br>
+                                                    <button class="btn btn-outline-info btn-sm" style="float:right;" onclick="CustomizeSummary()">Customize</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <!-- First Card (Top Left) -->
+                                        <div class="col-md-5 mb-3">
+                                            <div class="card" id="summaryOutput2" style="height:280px;"> 
+                                                <div class="card-header" style="background-color: #ffffff; color: #0E7383;">
+                                                    <h6 class="m-0 font-weight-bold">Interactive Summary :</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <textarea class="form-control" style="height:150px; overflow-y: auto;" name="output_summary" id="summaryInput2" rows="3"></textarea>
+                                                    <!-- Evaluate Button -->
+                                                    <div class="text-right">
+                                                        <br>
+                                                        <button class="btn btn-outline-info btn-sm" style="float:right;" onclick="EvaluateSummary()">Evaluate</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Second Card (Top Right) -->
+                                        <div class="col-md-7 mb-5">
+                                            <div class="card" style="height: 280px;">
+                                                <div class="card-header" style="background-color: rgb(255, 255, 255); color: #0E7383;">
+                                                    <h6 class="m-0 font-weight-bold">Evaluation :</h6>
+                                                </div>
+                                                <div class="card-body d-flex flex-column flex-md-row">
+                                                    <!-- Left side -->
+                                                    <div class="col-md-4 mb-3" style="margin-right: 3px;">
+                                                        <div class="card no-border" style="overflow-y: auto; overflow-x: auto; height: 200px;">
+                                                            <div class="card-body no-border-body">
+                                                                <h4 class="small font-weight-bold" id="compressionLabel"></h4>
+                                                                <div class="progress mb-4" style="width: 190px;">
+                                                                    <div class="progress-bar bg-info" id="compressionProgressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="float-right" id="compressionPercentage"></span></div>
+                                                                </div>
+                                                                <h4 class="small font-weight-bold" id="coverageLabel"></h4>
+                                                                <div class="progress mb-4" style="width: 190px;">
+                                                                    <div class="progress-bar bg-info" id="coverageProgressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="float-right" id="coveragePercentage"></span></div>
+                                                                </div>
+                                                                <h4 class="small font-weight-bold" id="factualConsistencyLabel"></h4>
+                                                                <div class="progress mb-4" style="width: 190px;">
+                                                                    <div class="progress-bar bg-info" id="factualConsistencyProgressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span class="float-right" id="factualConsistencyPercentage"></span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Vertical line -->
+                                                    <div style="border-right: 1px solid #ddd; height: 100%; margin: 0 2px;"></div>
+
+                                                    <!-- Right side -->
+                                                    <div class="col-md-8 mb-3">
+                                                        <div class="card no-border" style="overflow-y: auto; padding-left: 3px; height: 200px; margin-left: 5px;" >
+                                                            <div class="card-body no-border-body">
+                                                                <h4 class="small font-weight-bold" id="compressionLabel">⚠️ Possible Error </h4>
+                                                                <p style="color: gray; font-size: 14px; margin-bottom: 9px; text-align: right;">*The following sentences may contain factual errors.</p>
+                                                                <table id="statementTable" class="table" style="overflow-y: auto;">
+                                                                    <!-- Table Content -->
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </section>
+                        </div>
+                </div>
+                <br><br>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        function showLoadingScreen() {
+            $('#loadingScreen').show();
+        }
+        function hideLoadingScreen() {
+            $('#loadingScreen').hide();
+        }
+    </script>
+
+    <script>
+        var tabCount = 1;
+        var usedTabNames = ['Document 1'];
+
+        // Function to add a new tab dynamically
+        function addNewTab() {
+            tabCount++;
+            var newTabName = generateUniqueTabName();
+            
+            var newTab = '<li class="nav-item">'
+                + '<a class="nav-link" id="tab' + tabCount + '-tab" data-toggle="tab" href="#tab' + tabCount + '" role="tab" aria-controls="tab' + tabCount + '" aria-selected="true">' + newTabName + '</a>'
+                + '<button class="close" type="button" onclick="removeTab(' + tabCount + ')">&times;</button>'
+                + '</li>';
+            var newTabContent = '<div class="tab-pane fade" id="tab' + tabCount + '" role="tabpanel" aria-labelledby="tab' + tabCount + '-tab">'
+                + '<div class="form-group">'
+                
+                + '<textarea class="form-control" style="height:245px" name="summaries[]" id="summaryInput' + tabCount + '" rows="3" placeholder="Enter your text input here..."></textarea>'
+                + '</div>'
+                + '</div>';
+
+            // Append new tab and tab content
+            $('#summaryTabs li.add-tab').before(newTab);
+            $('.tab-content').append(newTabContent);
+
+            // Remember the used tab name
+            usedTabNames.push(newTabName);
+        }
+
+        // Function to remove a tab dynamically
+        function removeTab(tabNumber) {
+            // Remove the tab and its content
+            $('#tab' + tabNumber).remove();
+            $('#tab' + tabNumber + '-tab').parent().remove();
+
+            // Activate the first tab after removal
+            $('#summaryTabs a:first').tab('show');
+        }
+
+        // Function to generate a unique tab name
+        function generateUniqueTabName() {
+            var newTabName = 'Document ' + tabCount;
+            var index = 1;
+            
+            while (usedTabNames.includes(newTabName)) {
+                index++;
+                newTabName = 'Document ' + index;
+            }
+
+            return newTabName;
+        }
+    </script> 
+
+    <script> 
+        // Function to toggle the detail card visibility
+        function toggleDetail() {
+            $('#detailCard').toggle();
+        }
+    </script>
+
+    <script>
+        function renderGraph(extractedRelation) {
+            var nodes = new vis.DataSet([]);
+            var edges = new vis.DataSet([]);
+            
+            if (extractedRelation.length > 0) {
+                // Count the number of edges for each node
+                var nodeEdgeCount = {};
+                extractedRelation.forEach(function (relation) {
+                    nodeEdgeCount[relation.subject] = (nodeEdgeCount[relation.subject] || 0) + 1;
+                    nodeEdgeCount[relation.object] = (nodeEdgeCount[relation.object] || 0) + 1;
+                });
+
+                // Add nodes with size property based on the number of edges
+                extractedRelation.forEach(function (relation) {
+                    var headNodeSize = Math.min(nodeEdgeCount[relation.subject] * 6, 32); // You can adjust the multiplier as needed
+                    var tailNodeSize = Math.min(nodeEdgeCount[relation.object] * 6, 32); // Limit the size to 30
+
+                    // Set the size to 10 if the node has only one edge
+                    if (nodeEdgeCount[relation.subject] === 1) {
+                        headNodeSize = 7;
+                    }
+
+                    if (nodeEdgeCount[relation.object] === 1) {
+                        tailNodeSize = 7;
+                    }
+                    
+                    var headNode = { id: relation.subject, label: relation.subject, size: headNodeSize };
+                    var tailNode = { id: relation.object, label: relation.object, size: tailNodeSize };
+                    var edge = { id: `${relation.subject}-${relation.object}`, from: relation.subject, to: relation.object, label: relation.relation };
+
+                    // Check if nodes already exist
+                    if (!nodes.get(relation.subject)) {
+                        nodes.add(headNode);
+                    }
+                    if (!nodes.get(relation.object)) {
+                        nodes.add(tailNode);
+                    }
+
+                    // Check if edge already exists
+                    if (!edges.get(`${relation.subject}-${relation.object}`)) {
+                        edges.add(edge);
+                    }
+                });
+            }
+
+            var container = document.getElementById('graph');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            
+            // Destroy the existing network (if any)
+            if (window.network !== undefined) {
+                window.network.destroy();
+            }
+
+            var options = {
+                layout: {
+                    randomSeed: 2,
+                },
+
+                physics: {
+                    barnesHut: {
+                        gravitationalConstant: -3000,
+                        centralGravity: 0.5,
+                        springLength: 95,
+                        springConstant: 0.04,
+                        damping: 0.09,
+                        avoidOverlap: 0.1
+                    },
+                },
+                nodes: {
+                    shape: 'dot',
+                    size: 20,
+                    font: {
+                        size: 15,
+                        color: 'black'
+                    },
+                },
+                edges: {
+                    arrows: {
+                        to: {
+                            enabled: true,
+                            scaleFactor: 0.5,
+                            type: 'arrow'
+                        }
+                    },
+                    font: {
+                        size: 12,
+                        color: 'gray'
+                    },
+                    color: {
+                        inherit: 'from'
+                    }
+                }
+            };
+            
+            var network = new vis.Network(container, data, options);
+            window.network = network; 
+        }
+        
+
+        function submitTextInputs() {
+            
+            showLoadingScreen();
+            var summaries = [];
+
+            // Iterate through each tab's textarea
+            $('.tab-pane textarea').each(function () {
+                var summaryText = $(this).val();
+                summaries.push(summaryText);
+            });
+
+            
+            // Use jQuery AJAX to send data to Flask server
+            $.ajax({
+                type: 'POST',
+                url: '/index',  // Flask route to handle the form data
+                data: { 'summaries': summaries },
+
+                success: function (output) {
+                    // Code to execute when the AJAX request is successful
+                    $('#summaryOutput .card-body p').html(output['summary']);
+                    // $('#mentionCluster .card-body p').html(output['cluster']);
+                                        
+                    // Parse the extracted_relation JSON data
+                    var extractedRelation = JSON.parse(JSON.stringify(output['relation']));
+                    var entity_cluster = JSON.parse(JSON.stringify(output['cluster']));
+
+                    // Clear the existing table content
+                    $('#entityTable').empty();
+                    $('#relationTable').empty();
+                    
+                    // Entity Table
+                    if (entity_cluster.length > 0) {
+                        for (var i = 0; i < entity_cluster.length; i++) {
+                            var row = '<tr style="height: 18px;">' +
+                                '<td>' + entity_cluster[i] + '</td>' +
+                                '</tr>';
+                            $('#entityTable').append(row);
+                        }
+                    }
+                    
+                    // Relation Table
+                    var tableHeaders = '<thead><tr><th>Subject</th><th>Relation</th><th>Object</th><th><span style="color: gray;">O</span></th><th><span style="color: gray;">X</span></th></tr></thead>';
+                    $('#relationTable').append(tableHeaders);
+
+                    // Check if extractedRelation has elements
+                    if (extractedRelation.length > 0) {
+                        // Add table rows with extracted relation data and checkboxes
+                        for (var i = 0; i < extractedRelation.length; i++) {
+                            var row = '<tr style="height: 20px;">' +
+                                '<td>' + extractedRelation[i].subject + '</td>' +
+                                '<td>' + extractedRelation[i].relation + '</td>' +
+                                '<td>' + extractedRelation[i].object + '</td>' +
+                                '<td style="background-color: #Ebf3fd;"> <input type="checkbox" id="checkboxO_' + i + '" class="checkboxO" name="checkboxGroup_' + i + '"> </td>' +
+                                '<td style="background-color: #Fff3f3;"> <input type="checkbox" id="checkboxX_' + i + '" class="checkboxX" name="checkboxGroup_' + i + '"> </td>' +
+                                '</tr>';
+
+                            $('#relationTable').append(row);
+                        }
+
+                        // Add event listener to manage checkbox selection
+                        $('input:checkbox').change(function () {
+                            var groupName = $(this).attr('name'); // Get the group name of the clicked checkbox
+
+                            // Uncheck all checkboxes in the same group
+                            $('input[name="' + groupName + '"]').not(this).prop('checked', false);
+                        });
+
+                    } else {
+                        // If no data is available, display a message or handle it accordingly
+                        var noDataMessage = '<tr><td colspan="5">No relation data available.</td></tr>';
+                        $('#relationTable').append(noDataMessage);
+                        
+                    }
+                    renderGraph(extractedRelation);
+
+                    hideLoadingScreen();
+                },
+
+                error: function (error) {
+                    console.log(error);
+
+                    hideLoadingScreen();
+                }
+
+            });
+        }
+    </script>
+    
+    <script>
+        function EvaluateSummary() {
+            
+            // Show loading screen
+            showLoadingScreen();
+
+            // Get the summary data from the textarea
+            var outputSummary = $('#summaryOutput2 .card-body textarea').val(); 
+
+            // Get input documents
+            var summaries = [];
+            $('.tab-pane textarea').each(function () {
+                var summaryText = $(this).val();
+                summaries.push(summaryText);
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '/evaluate',  // Flask route
+                data: { 'output_summary': outputSummary, 'documents': summaries},
+    
+                success: function (output) {
+                    var extractedRelation = JSON.parse(JSON.stringify(output['factual_statement_list']));
+                    $('#statementTable').empty();
+                    if (extractedRelation.length > 0) {
+                        for (var i = 0; i < extractedRelation.length; i++) {
+                            var row = '<tr style="height: 11px;">' +
+                                '<td>' + extractedRelation[i] + '</td>' +
+                                '</tr>';
+                            $('#statementTable').append(row);
+                        }
+                    }
+
+                    // Get score and update progress bar
+                    var compressionScore = output['compression'];
+                    var coverageScore = output['coverage'];
+                    var factualConsistencyScore = output['factual_consistency']
+
+                    // Compression Ratio label과 percentage, progress bar 업데이트
+                    updateLabelAndPercentage('compressionLabel', 'compressionPercentage', 'Compression Ratio', '(conciseness)', compressionScore);
+                    updateProgressBar('compressionProgressBar', compressionScore);
+
+                    // Coverage label과 percentage, progress bar 업데이트
+                    updateLabelAndPercentage('coverageLabel', 'coveragePercentage', 'Coverage Fraction', '(Inclusion)', coverageScore);
+                    updateProgressBar('coverageProgressBar', coverageScore);
+
+                    // Factual Consistency label과 percentage, progress bar 업데이트
+                    updateLabelAndPercentage('factualConsistencyLabel', 'factualConsistencyPercentage', 'Factaul Consistency', '(Faithfulness)', factualConsistencyScore);
+                    updateProgressBar('factualConsistencyProgressBar', factualConsistencyScore);
+            
+                    hideLoadingScreen();
+
+                },
+    
+                error: function (error) {
+                    console.log(error);
+
+                    hideLoadingScreen();
+                    }
+            });
+
+            function updateProgressBar(barId, score) {
+                $('#' + barId).css('width', score + '%');
+                $('#' + barId).attr('aria-valuenow', score);
+            }
+            function updateLabelAndPercentage(labelId, percentageId, labelText, labelText2, score) {
+                $('#' + labelId).html(labelText + ' <span class="text-secondary" style="color:gray; font-size:11px;">&nbsp;&nbsp;' + labelText2 + '</span>');
+                //$('#' + labelId).html(labelText);
+                $('#' + percentageId).text(score + '%');
+            }   
+        }
+    </script>
+    <script>
+        function CustomizeSummary() {
+            
+            // Show loading screen
+            showLoadingScreen();
+
+            // Get the user prompt data from the textarea
+            var userPromptData = $('#userPrompt').val();
+
+            // Will get the data of selected columns from the relation table
+            var selectedRows = [];
+
+            $('input[type="checkbox"]:checked').each(function () {
+                var row = $(this).closest('tr');
+                var subject = row.find('td:eq(0)').text();
+                var relation = row.find('td:eq(1)').text();
+                var object = row.find('td:eq(2)').text();
+                var checkboxO = row.find('.checkboxO').prop('checked') ? 'O' : '';
+                var checkboxX = row.find('.checkboxX').prop('checked') ? 'X' : '';
+
+                var rowData = {
+                    'subject': subject,
+                    'relation': relation,
+                    'object': object,
+                    'checkboxO': checkboxO,
+                    'checkboxX': checkboxX
+                };
+
+                selectedRows.push(rowData);
+            });    
+            
+            $.ajax({
+                type: 'POST',
+                url: '/customize_summary',  // Flask route
+                data: { 'user_prompt': userPromptData, 'selected_rows': JSON.stringify(selectedRows) },
+    
+                success: function (output) {
+                    $('#summaryOutput2 .card-body textarea').val(output['summary']);
+                                        
+                    hideLoadingScreen();
+
+                },
+    
+                error: function (error) {
+                    console.log(error);
+
+                    hideLoadingScreen();
+                    }
+            });
+        }
+    </script>
+    <script>
+        function showExample() {
+            document.getElementById('summaryInput1').value = "In what can only be described as a fairytale wedding, Chandler Bing and Monica Geller, the acclaimed chef, exchanged vows in a stunning ceremony attended by a host of celebrities and close friends. The wedding, held in New York City, was the epitome of elegance and style. Chandler Bing was dapper in a classic black tuxedo. The couple's happiness was palpable as they shared their vows in front of an intimate gathering of family and friends. The wedding was followed by a lavish reception, which was filled with laughter, dancing, and speeches from loved ones, including heartfelt toasts from Ross Geller, older brother of Monica Geller, as well as an old friend of Chandler Bing. Among the closest friends of Chandler Bing is Ross Geller, with whom he shares a deep bond rooted in years of friendship. This relationship is further intertwined through family, as Chandler is married to Monica Geller, Ross's sister. This union not only solidifies Chandler's place within the Geller family but also brings a unique dynamic to his friendship with Ross Geller.";
+        }
+    </script>
+</body>
+
+</html>
