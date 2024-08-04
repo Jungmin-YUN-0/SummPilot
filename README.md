@@ -25,7 +25,7 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 - [License](#license)
 
 
-## Features
+## ✨ Features
 - **Graph Visualization**: Displays the relationships between entities within the input text as a semantic graph, helping users understand the structure and key connections.
 - **Relation Extraction**: Identifies and extracts meaningful relationships between entities within the input text, highlighting how different entities are connected.
 - **Entity Clustering**: Groups similar or related entities together to provide a clearer overview of the information by identifying and clustering references to the same entity.
