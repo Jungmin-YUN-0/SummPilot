@@ -82,6 +82,8 @@ Open the app.py file and set a secure value for app.secret_key:
 app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
 ```
 
+&nbsp;
+
 #### 3-2. OpenAI API Key Setup
 To use the OpenAI-compatible APIs with SummPilot, follow these steps to set up your OpenAI API key:
 
@@ -97,9 +99,8 @@ To use the OpenAI-compatible APIs with SummPilot, follow these steps to set up y
 
 By completing these steps, you'll have successfully configured SummPilot to use your OpenAI API key for its summarization and evaluation functionalities.
 
-##
 
---
+---
 
 ## Citation
 TBU
