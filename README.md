@@ -99,6 +99,8 @@ By completing these steps, you'll have successfully configured SummPilot to use 
 
 ##
 
+--
+
 ## Citation
 TBU
 
