@@ -11,18 +11,18 @@ https://github.com/user-attachments/assets/7c099a92-05b2-4b24-855d-dc52407b16b1
 
 ---
 
-### SummPilot: Bridging Efficiency and Customization for Interactive Summarization System
+### ✨ SummPilot: Bridging Efficiency and Customization for Interactive Summarization System
 
 **SummPilot** is a web application built with Flask that offers customizable and interactive summarization of multiple documents. It allows users to generate initial summaries and then personalize them to meet their specific needs.
 
 It features two modes: **Basic Mode**, which provides automatic summarization, and **Advanced Mode**, which enables user-driven customization, offering different approaches to the summarization process.
 
-## 📑 Contents
+## Contents 📑
 - [Features](#Features)
 - [Install Dependencies](#Install-Dependencies)
 - [Usage](#Usage)
 - [Setup](#Setup)
-- [License](#license)
+- [Citation](#Citation)
 
 
 ## Features
@@ -36,17 +36,25 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 
 ## Build Your Own SummPilot ⚒️
 
-### Install Dependencies
+### 1. Install Dependencies
 
 ```bash
+# clone the code
 git clone https://github.com/Jungmin-YUN-0/SummPilot.git
 cd SummPilot
+
+# prepare the environment
+# create env using conda
+conda create -n SummPilot
+conda activate SummPilot
+
+# install requirements
 pip install -r requirements.txt
 ```
 
 ##
 
-### Usage
+### 2. Usage
 To run the application locally:
 ```bash
 python run.py
@@ -63,21 +71,18 @@ if __name__ == "__main__":
 
 ##
 
-### Setup
-#### Environment Setup
+### 3. Setup
+#### 3-1. Environment Setup
+Ensure all necessary files and directories are in place, including templates, static assets, and the `THEME` directory.  
 
-- Open the app.py file and set a secure value for app.secret_key:
+&nbsp;
 
+Open the app.py file and set a secure value for app.secret_key:
 ```bash
 app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
 ```
 
-- Ensure all necessary files and directories are in place, including templates, static assets, and the `THEME` directory.  
-
-&nbsp;
-
-
-#### OpenAI API Key Setup
+#### 3-2. OpenAI API Key Setup
 To use the OpenAI-compatible APIs with SummPilot, follow these steps to set up your OpenAI API key:
 
 1. Open the `summarization.py` and `summary_evaluation.py` files in your preferred text editor.
@@ -93,4 +98,7 @@ To use the OpenAI-compatible APIs with SummPilot, follow these steps to set up y
 By completing these steps, you'll have successfully configured SummPilot to use your OpenAI API key for its summarization and evaluation functionalities.
 
 ##
+
+## Citation
+TBU
 
