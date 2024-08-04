@@ -18,7 +18,7 @@ https://github.com/user-attachments/assets/7c099a92-05b2-4b24-855d-dc52407b16b1
 It features two modes: **Basic Mode**, which provides automatic summarization, and **Advanced Mode**, which enables user-driven customization, offering different approaches to the summarization process.
 
 ## 📑 Contents
-- [Features](#Features)
+- [Features](#✨-Features)
 - [Install Dependencies](#Install-Dependencies)
 - [Usage](#Usage)
 - [Setup](#Setup)
