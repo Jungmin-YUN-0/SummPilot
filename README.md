@@ -19,13 +19,13 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 
 ## 📑 Contents
 - [Features](#Features)
-- [Install Dependencies](#⚙️-Install-Dependencies)
+- [Install Dependencies](#Install-Dependencies)
 - [Usage](#Usage)
 - [Setup](#Setup)
 - [License](#license)
 
 
-## Features ✨ 
+## Features
 - **Graph Visualization**: Displays the relationships between entities within the input text as a semantic graph, helping users understand the structure and key connections.
 - **Relation Extraction**: Identifies and extracts meaningful relationships between entities within the input text, highlighting how different entities are connected.
 - **Entity Clustering**: Groups similar or related entities together to provide a clearer overview of the information by identifying and clustering references to the same entity.
@@ -34,9 +34,9 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 
 ---
 
-## Build Your Own SummPilot
+## Build Your Own SummPilot ⚒️
 
-### ⚙️ Install Dependencies
+### Install Dependencies
 
 ```bash
 git clone https://github.com/Jungmin-YUN-0/SummPilot.git
