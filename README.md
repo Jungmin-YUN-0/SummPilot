@@ -19,7 +19,7 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 
 ## 📑 Contents
 - [Features](#✨-Features)
-- [Install Dependencies](#Install-Dependencies)
+- [Install Dependencies](#⚙️-Install-Dependencies)
 - [Usage](#Usage)
 - [Setup](#Setup)
 - [License](#license)
@@ -36,7 +36,7 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 
 ## Build Your Own SummPilot
 
-### Install Dependencies
+### ⚙️ Install Dependencies
 
 ```bash
 git clone https://github.com/Jungmin-YUN-0/SummPilot.git
