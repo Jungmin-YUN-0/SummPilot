@@ -4,27 +4,26 @@
 
 <p align="center">
   <a href="TBU"> 📃 Paper </a> | 
-  <a href="[https://www.youtube.com/watch?v=jtZO6_l66JI]"> 🎦 Demo </a>
+  <a href="https://www.youtube.com/watch?v=jtZO6_l66JI"> 🎦 Demo </a>
 </p>
 
 https://github.com/user-attachments/assets/7c099a92-05b2-4b24-855d-dc52407b16b1
 
 ---
 
-## SummPilot: Bridging Efficiency and Customization for Interactive Summarization System
+### SummPilot: Bridging Efficiency and Customization for Interactive Summarization System
 
 **SummPilot** is a web application built with Flask that offers customizable and interactive summarization of multiple documents. It allows users to generate initial summaries and then personalize them to meet their specific needs.
 
 It features two modes: **Basic Mode**, which provides automatic summarization, and **Advanced Mode**, which enables user-driven customization, offering different approaches to the summarization process.
 
-## Contents
+## 📑 Contents
 - [Features](#Features)
-- [Installation](#Install Dependencies)
+- [Install Dependencies](#Install-Dependencies)
 - [Usage](#Usage)
 - [Setup](#Setup)
 - [License](#license)
 
----
 
 ## Features
 - **Graph Visualization**: Displays the relationships between entities within the input text as a semantic graph, helping users understand the structure and key connections.
@@ -32,6 +31,8 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 - **Entity Clustering**: Groups similar or related entities together to provide a clearer overview of the information by identifying and clustering references to the same entity.
 - **User Commands**: Enables users to freely input text-based instructions or preferences, allowing them to customize the generated summary to meet their specific needs.
 - **Summary Evaluation**: Assesses the quality of the generated summary by evaluating metrics such as compression ratio, coverage, and factual consistency, ensuring the summary accurately reflects the original content. Possible Errors refer to potential inaccuracies or inconsistencies in the generated summary that may arise due to model limitations or incorrect user input.
+
+---
 
 ## Build Your Own SummPilot
 
@@ -43,12 +44,16 @@ cd SummPilot
 pip install -r requirements.txt
 ```
 
+##
+
 ### Usage
 To run the application locally:
 ```bash
 python run.py
 ```
-You can access the application by opening your web browser and navigating to `http://localhost:8080`.
+You can access the application by opening your web browser and navigating to `http://localhost:8080`.  
+
+&nbsp;
 
 If needed, you can modify the host and port settings by editing the following code:
 ```bash
@@ -56,16 +61,20 @@ if __name__ == "__main__":
   app.run(host='localhost', port=8080, debug=True) # for localhost
 ```
 
+##
+
 ### Setup
 #### Environment Setup
 
-Open the app.py file and set a secure value for app.secret_key:
+- Open the app.py file and set a secure value for app.secret_key:
 
 ```bash
 app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
 ```
 
-Ensure all necessary files and directories are in place, including templates, static assets, and the `THEME` directory.
+- Ensure all necessary files and directories are in place, including templates, static assets, and the `THEME` directory.  
+
+&nbsp;
 
 
 #### OpenAI API Key Setup
@@ -82,4 +91,6 @@ To use the OpenAI-compatible APIs with SummPilot, follow these steps to set up y
 3. Uncomment the openai.api_key line and replace the "your_openai_api_key_here" text with your actual OpenAI API key.
 
 By completing these steps, you'll have successfully configured SummPilot to use your OpenAI API key for its summarization and evaluation functionalities.
+
+##
 
