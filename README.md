@@ -19,9 +19,9 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 
 ## Contents 📑
 - [Features](#Features)
-- [Install Dependencies](#Install-Dependencies)
-- [Usage](#Usage)
-- [Setup](#Setup)
+- [Install Dependencies](#1.-Install-Dependencies)
+- [Usage](#2.-Usage)
+- [Setup](#3.-Setup)
 - [Citation](#Citation)
 
 
