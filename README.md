@@ -9,19 +9,29 @@
 
 https://github.com/user-attachments/assets/7c099a92-05b2-4b24-855d-dc52407b16b1
 
+---
+
 ## SummPilot: Bridging Efficiency and Customization for Interactive Summarization System
 
-**SummPilot** is a web application built with Flask that offers customizable and interactive summarization of multiple documents. It allows users to generate initial summaries and then personalize them to meet their specific needs. It features two modes: **Basic Mode**, which provides automatic summarization, and **Advanced Mode**, which enables user-driven customization, offering different approaches to the summarization process.
+**SummPilot** is a web application built with Flask that offers customizable and interactive summarization of multiple documents. It allows users to generate initial summaries and then personalize them to meet their specific needs.
+
+It features two modes: **Basic Mode**, which provides automatic summarization, and **Advanced Mode**, which enables user-driven customization, offering different approaches to the summarization process.
 
 ## Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Endpoints](#endpoints)
-- [Summary Evaluation](#summary-evaluation)
-- [Customization](#customization)
-- [Contributing](#contributing)
+- [Features](#Features)
+- [Installation](#Install Dependencies)
+- [Usage](#Usage)
+- [Setup](#Setup)
 - [License](#license)
+
+---
+
+## Features
+- **Graph Visualization**: Displays the relationships between entities within the input text as a semantic graph, helping users understand the structure and key connections.
+- **Relation Extraction**: Identifies and extracts meaningful relationships between entities within the input text, highlighting how different entities are connected.
+- **Entity Clustering**: Groups similar or related entities together to provide a clearer overview of the information by identifying and clustering references to the same entity.
+- **User Commands**: Enables users to freely input text-based instructions or preferences, allowing them to customize the generated summary to meet their specific needs.
+- **Summary Evaluation**: Assesses the quality of the generated summary by evaluating metrics such as compression ratio, coverage, and factual consistency, ensuring the summary accurately reflects the original content. Possible Errors refer to potential inaccuracies or inconsistencies in the generated summary that may arise due to model limitations or incorrect user input.
 
 ## Build Your Own SummPilot
 
@@ -46,18 +56,19 @@ if __name__ == "__main__":
   app.run(host='localhost', port=8080, debug=True) # for localhost
 ```
 
-### Environment Setup
+### Setup
+#### Environment Setup
 
-- Open the app.py file and set a secure value for app.secret_key:
+Open the app.py file and set a secure value for app.secret_key:
 
 ```bash
 app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
 ```
 
-- Ensure all necessary files and directories are in place, including templates, static assets, and the `THEME` directory.
+Ensure all necessary files and directories are in place, including templates, static assets, and the `THEME` directory.
 
 
-### OpenAI API Key Setup
+#### OpenAI API Key Setup
 To use the OpenAI-compatible APIs with SummPilot, follow these steps to set up your OpenAI API key:
 
 1. Open the `summarization.py` and `summary_evaluation.py` files in your preferred text editor.
