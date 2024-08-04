@@ -46,3 +46,29 @@ if __name__ == "__main__":
   app.run(host='localhost', port=8080, debug=True) # for localhost
 ```
 
+### Environment Setup
+
+- Open the app.py file and set a secure value for app.secret_key:
+
+```bash
+app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
+```
+
+- Ensure all necessary files and directories are in place, including templates, static assets, and the `THEME` directory.
+
+
+### OpenAI API Key Setup
+To use the OpenAI-compatible APIs with SummPilot, follow these steps to set up your OpenAI API key:
+
+1. Open the `summarization.py` and `summary_evaluation.py` files in your preferred text editor.
+
+2. In each file, locate the following code snippet:
+ ```python
+   # Please enter your API key
+   # openai.api_key = "your_openai_api_key_here"
+```
+
+3. Uncomment the openai.api_key line and replace the "your_openai_api_key_here" text with your actual OpenAI API key.
+
+By completing these steps, you'll have successfully configured SummPilot to use your OpenAI API key for its summarization and evaluation functionalities.
+
