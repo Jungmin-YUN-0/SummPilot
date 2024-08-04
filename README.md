@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="TBU"> 📃 Paper </a> | 
-  <a href="[https://link-to-playground.com](https://www.youtube.com/watch?v=jtZO6_l66JI)"> 🎦 Demo </a>
+  <a href="[https://www.youtube.com/watch?v=jtZO6_l66JI]"> 🎦 Demo </a>
 </p>
 
 https://github.com/user-attachments/assets/7c099a92-05b2-4b24-855d-dc52407b16b1
