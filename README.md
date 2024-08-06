@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-  <a href="TBU"> 📃 Paper </a> | 
+   📃 Paper | 
   <a href="https://www.youtube.com/watch?v=jtZO6_l66JI"> 🎦 Demo </a>
 </p>
 
