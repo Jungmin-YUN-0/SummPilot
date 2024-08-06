@@ -26,11 +26,11 @@ It features two modes: **Basic Mode**, which provides automatic summarization, a
 
 
 ## Features
-- **Graph Visualization**: Displays the relationships between entities within the input text as a semantic graph, helping users understand the structure and key connections.
-- **Relation Extraction**: Identifies and extracts meaningful relationships between entities within the input text, highlighting how different entities are connected.
+- **Graph Visualization**: Visualizes the relationships between entities in the input text as a semantic graph, helping users understand the structure and key connections within the text by illustrating how entities are interrelated.
+- **Relation Extraction**: Identifies and extracts significant relationships between entities in the input text, highlighting how different entities are connected.
 - **Entity Clustering**: Groups similar or related entities together to provide a clearer overview of the information by identifying and clustering references to the same entity.
-- **User Commands**: Enables users to freely input text-based instructions or preferences, allowing them to customize the generated summary to meet their specific needs.
-- **Summary Evaluation**: Assesses the quality of the generated summary by evaluating metrics such as compression ratio, coverage, and factual consistency, ensuring the summary accurately reflects the original content. Possible Errors refer to potential inaccuracies or inconsistencies in the generated summary that may arise due to model limitations or incorrect user input.
+- **User Commands**: Allows users to customize the generated summary to meet their specific needs by inputting text-based instructions or preferences.
+- **Summary Evaluation**: Assesses the quality of the generated summary through metrics such as compression ratio, coverage, and factual consistency, ensuring the summary accurately reflects the original content. Possible Errors refer to potential inaccuracies or inconsistencies in the generated summary that may arise due to user intervention or model limitations.
 
 ---
 
