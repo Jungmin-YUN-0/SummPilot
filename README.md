@@ -77,7 +77,7 @@ Ensure all necessary files and directories are in place, including templates, st
 
 &nbsp;
 
-Open the app.py file and set a secure value for app.secret_key:
+Open the run.py file and set a secure value for app.secret_key:
 ```bash
 app.secret_key = 'your_secret_key_here'  # Replace with a strong secret key
 ```
