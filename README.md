@@ -3,11 +3,12 @@
 </div>
 
 <p align="center">
-   📃 Paper | <a href="https://www.youtube.com/watch?v=7ZUBIyqPpbs">Demo</a>
+   📃 Paper | <a href="https://www.youtube.com/watch?v=7ZUBIyqPpbs"> 🎥 Demo</a>
 </p>
 
 
-https://github.com/user-attachments/assets/7c099a92-05b2-4b24-855d-dc52407b16b1
+https://github.com/user-attachments/assets/e94f34f3-a53b-4f8f-9654-e1a1ab994d12
+
 
 ---
 
