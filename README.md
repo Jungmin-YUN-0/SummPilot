@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-   📃 Paper | 
+   📃 Paper | <a href "[https://www.youtube.com/watch?v=7ZUBIyqPpbs]">
 </p>
 
 https://github.com/user-attachments/assets/7c099a92-05b2-4b24-855d-dc52407b16b1
